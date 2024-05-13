@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 9090;
 
 // Endpoint to get zodiac sign based on birthday
 app.get('/zodiac', (req, res) => {
