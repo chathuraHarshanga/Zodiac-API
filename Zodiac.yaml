@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: Zodiac API
+  description: |
+    This API determines a person's zodiac sign based on their birthday and provides a description of their personality according to astrology.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local server
+paths:
+  /zodiac:
+    get:
+      summary: Get zodiac sign and description
+      description: Retrieve the zodiac sign and a brief description based on a person's birthday.
+      parameters:
+        - in: query
+          name: birthday
+          required: true
+          description: The person's birthday in the format yyyy-mm-dd.
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  birthday:
+                    type: string
+                    format: date
+                    example: "1990-08-25"
+                  zodiacSign:
+                    type: string
+                    example: "Virgo"
+                  description:
+                    type: string
+                    example: "You are analytical, detail-oriented, and strive for perfection."
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid birthday format. Please use yyyy-mm-dd."
